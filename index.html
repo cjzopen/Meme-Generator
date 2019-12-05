@@ -1,198 +1,151 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Meme Generator</title>
-    <!-- Stylesheets Included -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="style.css"/>
-	</head>
-	<body>
-
-    <!-- Navbar Code Start -->
-	  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-		    <a class="navbar-brand" href="#">Meme Generator</a>
-	  </nav>
-    <!-- Navbar Code End -->
-
-  	<div class="container">
+<head>
+  <title>Meme Generator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+  <body>
+    <div class="container">
       <!-- Page Heading Start -->
-  		<div class="page-header">
-  			<h1><i class="fa fa-2x fa-paint-brush" aria-hidden="true"></i> Create your awesome Meme now!</h1>
-  		</div>
+      <div class="page-header">
+        <h1 class="mt-4">實際圖片</h1>
+      </div>
       <br>
       <!-- Page Heading End -->
 
       <!-- Left Part of Page Start -->
-  		<div class="row">
-  			<div class="col-md-5">
+      <div>
+        <canvas id="meme" class="img-thumbnail img-fluid">
+          Unfortunately your browser does not support canvas.
+        </canvas>
+      </div>
+      <h2 class="mt-5">操作區塊</h2>
+      <div class="float-md-left pr-3">
+        <div id="meme_area" class="d-inline-block position-relative">
+          <img id="start-image" src="img/kokoro.jpg" alt="" />
+          <div class="position-absolute p-1 draggable" id="text_top-container" data-x="0" data-y="0">
+            <div class="text-center editable" id="text_top">
+              <p>當不認識的親戚小孩來討紅包時</p>
+            </div>
+          </div>
+          <div class="position-absolute p-1 draggable" id="text_bottom-container" data-x="0" data-y="0">
+            <div class="text-center editable" id="text_bottom">
+              <p>:)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="form-group">
+          <div class="row">
+            <label class="control-label col-md-4" for="text_font_size">Font size:</label>
+            <div class="col-md-6">
+              <input class="w-100" id="text_font_size" type="range" min="12" max="24" value="18"/>
+            </div>
+            <div class="col-md-2 setting-value">
+              <span id="text_font_size__val">18</span>px
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <label class="control-label col-4" for="text_color">color:</label>
+            <div class="col-6">
+              <input class="w-100" id="text_color" type="color" value="#ffffff" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <a href="#" class="btn btn-primary btn-block my-3" id="download_meme">Download</a>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="row">
 
-  				<!-- BEGIN: Canvas rendering of generated Meme -->
-  				<canvas id="meme" class="img-thumbnail img-fluid">
-  					Unfortunately your browser does not support canvas.
-  				</canvas>
-  				<!-- END: Canvas rendering of generated Meme -->
-
-          <!-- Download Link Start -->
-  				<a href="#" class="btn btn-primary btn-block" id="download_meme" style="margin-top:10px;">
-  					<i class="fa fa-download" aria-hidden="true"></i> Download
-  				</a>
-
-					<img id="start-image" src="image.jpg" alt="" />
-          <!-- Download Link End -->
-  			</div>
-        <!-- Left Part of Page End -->
 
 
         <!-- Right Part of Page Start -->
-  			<div class="col-md-7">
+        <div class="col-md-12">
 
           <!-- Input for uploading the image : START -->
-  				<div class="row">
-  					<div class="col-md-12">
-  						<div class="input-group">
-  							<span class="input-group-addon">Image:</span>
-  							<input type="file" accept="images/*" multiple=false class="form-control" id="imgInp" />
-  						</div>
-  					</div>
-  				</div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4>images</h4>
+              <div class="row" id="image_group">
+                <div class="col-6 col-sm-4 col-md-3 mb-3">
+                  <div class="card h-100">
+                    <div class="row h-100 align-items-center">
+                      <div class="col-4">
+                        <img src="img/kokoro.jpg" class="card-img" alt="*">
+                      </div>
+                      <div class="col-8">
+                        <p class="card-text">kokoro</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 mb-3">
+                  <div class="card h-100">
+                    <div class="row h-100 align-items-center">
+                      <div class="col-4">
+                        <img src="img/meow.png" class="card-img" alt="*">
+                      </div>
+                      <div class="col-8">
+                        <p class="card-text">貓貓無言</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 mb-3">
+                  <div class="card h-100">
+                    <div class="row h-100 align-items-center">
+                      <div class="col-4">
+                        <img src="img/aiai.jpg" class="card-img" alt="*">
+                      </div>
+                      <div class="col-8">
+                        <p class="card-text">大阪暴走機関車</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 mb-3">
+                  <div class="card h-100">
+                    <div class="row h-100 align-items-center">
+                      <div class="col-4">
+                        <img src="img/鹿.png" class="card-img" alt="*">
+                      </div>
+                      <div class="col-8">
+                        <p class="card-text">嫌棄</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="input-group">
+                <span class="input-group-addon">upload(寬高皆小於800px):</span>
+                <input type="file" accept="images/*" multiple=false class="form-control" id="imgInp" />
+              </div>
+            </div>
+          </div>
+          <hr>
           <!-- Input for uploading the image : END -->
 
-  				<hr />
-
-          <!-- Inputting the top text : START -->
-  				<label class="control-label" for="text_top">Text 1:</label>
-  				<div class="form-group">
-  					<input type="text" class="form-control" value="Have you expected this to be" id="text_top" />
-  				</div>
-          <!-- Inputting the top text : END -->
-
-          <!-- Slider for Text-1 offset from top : START -->
-  				<div class="form-group">
-  					<div class="row">
-  						<label class="control-label col-md-4" for="text_top_offset">Offset from top:</label>
-  						<div class="col-md-6">
-  							<input style="width:100%" id="text_top_offset" type="range" min="0" max="500" value="50"/>
-  						</div>
-  						<div class="col-md-2 setting-value">
-  							<span id="text_top_offset__val">50</span>px
-  						</div>
-  					</div>
-  				</div>
-          <!-- Slider for Text-1 offset from top : END -->
-
-  				<p>&nbsp;</p>
-
-          <!-- Inputting the bottom text : START -->
-  				<label class="control-label" for="text_bottom">Text 2:</label>
-  				<div class="form-group">
-  					<input type="text" class="form-control" value="funny?" id="text_bottom" />
-  				</div>
-          <!-- Inputting the bottom text : END -->
-
-          <!-- Slider for Text-2 offset from bottom : START -->
-  				<div class="form-group">
-  					<div class="row">
-  						<label class="control-label col-md-4" for="text_bottom_offset">Offset from Top:</label>
-  						<div class="col-md-6">
-  							<input style="width:100%" id="text_bottom_offset" type="range" min="0" max="500" value="450"/>
-  						</div>
-  						<div class="col-md-2 setting-value">
-  							<span id="text_bottom_offset__val">450</span>px
-  						</div>
-  					</div>
-  				</div>
-          <!-- Slider for Text-2 offset from bottom : END -->
-
-  				<hr />
-  				<p>&nbsp;</p>
-
-          <!-- More Options Card : START -->
-  				<div class="card">
-
-            <!-- Options Card Header : START -->
-  					<div class="card-header">
-  						<i class="fa fa-cogs" aria-hidden="true"></i> &nbsp; More options
-  					</div>
-            <!-- Options Card Header : END -->
-
-            <!-- Options Card Body : START -->
-  					<div class="card-body">
-
-  						<div class="row">
-  							<div class="col-md-12">
-
-                  <!-- Slider For Meme-Size : START -->
-  								<div class="form-group">
-  									<div class="row">
-  										<label class="control-label col-md-3" for="canvas_size">Meme size:</label>
-  										<div class="col-md-7">
-  											<input style="width:100%" id="canvas_size" type="range" min="0" max="1000" value="500"/>
-  										</div>
-  										<div class="col-md-2 setting-value">
-  											<span id="canvas_size__val">500</span>px
-  										</div>
-  									</div>
-  								</div>
-                  <!-- Slider For Meme-Size : END -->
-
-                  <!-- Slider For Font Size : START -->
-  								<div class="form-group">
-  									<div class="row">
-  										<label class="control-label col-md-3" for="text_font_size">Font size:</label>
-  										<div class="col-md-7">
-  											<input style="width:100%" id="text_font_size" type="range" min="0" max="72" value="28"/>
-  										</div>
-  										<div class="col-md-2 setting-value">
-  											<span id="text_font_size__val">28</span>pt
-  										</div>
-  									</div>
-  								</div>
-                  <!-- Slider For Font Size : END -->
-
-                  <!-- Slider For Line Size : START -->
-  								<div class="form-group">
-  									<div class="row">
-  										<label class="control-label col-md-3" for="text_line_height">Line height:</label>
-  										<div class="col-md-7">
-  											<input style="width:100%" id="text_line_height" type="range" min="0" max="100" value="15"/>
-  										</div>
-  										<div class="col-md-2 setting-value">
-  											<span id="text_line_height__val">15</span>pt
-  										</div>
-  									</div>
-  								</div>
-                  <!-- Slider For Line Size : END -->
-
-                  <!-- Slider For Stroke Width : START -->
-  								<div class="form-group">
-  									<div class="row">
-  										<label class="control-label col-md-3" for="text_stroke_width">Stroke width:</label>
-  										<div class="col-md-7">
-  											<input style="width:100%" id="text_stroke_width" type="range" min="0" max="20" value="4"/>
-  										</div>
-  										<div class="col-md-2 setting-value">
-  											<span id="text_stroke_width__val">4</span>pt
-  										</div>
-  									</div>
-  								</div>
-                  <!-- Slider For Stroke Width : END -->
-  							</div>
-  						</div>
-  					</div>
-            <!-- Options Card Body : END -->
-  				</div>
-          <!-- More Options Card : END -->
-  			</div>
+        </div>
         <!-- Right Part of page : END -->
-  		</div>
-  	</div>
+      </div>
+    </div>
 
-	 <!-- JavaScript -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="script.js"></script>
-
-	</body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" defer></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" defer></script> -->
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" defer></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js" defer></script>
+  <script src="script.js" defer></script>
+  </body>
 </html>
