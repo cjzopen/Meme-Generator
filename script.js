@@ -37,8 +37,8 @@ $(document).ready(function(){
     $bottom.css('transform', 'translate(0, 0)');
     $bottom.attr('data-x',0);
     $bottom.attr('data-y',0);
-    $('#text_top').html('<p>當不認識的親戚小孩來討紅包時</p>');
-    $('#text_bottom').html('<p>:)</p>');
+    $('#text_top').html('<p>親戚小孩來討紅包時</p>');
+    $('#text_bottom').html('<p>AAAAA</p>');
   }
 
   // Main drawing function
@@ -208,9 +208,10 @@ $(document).ready(function(){
   	drawMeme();
   });
   $(document).on('change keydown keyup', '#text_color', function() {
-    $('.editable').css({
+    $('.editable,#text_color__val').css({
       'color':$(this).val()
     });
+    $('#text_color__val').text($(this).val());
     drawMeme();
   });
   // $(document).on('input change', '#text_line_height', function() {
@@ -236,6 +237,33 @@ $(document).ready(function(){
 		$(this).attr('href', canvas.toDataURL());
 		$(this).attr('download', 'meme.png');
 	});
+  $(document).on('click', '#share-area .btn', function(e) {
+    e.preventDefault();
+    var $this = $(this);
+    var image_data = $('#share-area').attr('data-url');
+    var image_data_new = canvas.toDataURL();
+    if(image_data !== image_data_new){
+      $('#share-area').attr('data-url', canvas.toDataURL());
+      $.ajax({
+        type: "POST",
+        url: "imgur.php",
+        data: {image:$('#share-area').attr('data-url')},
+        beforeSend: function(){}
+      }).done(function(received){
+        console.log(JSON.parse(received));
+        if(JSON.parse(received).success){
+          if($this.attr('id')=='facebook'){
+            window.open(encodeURI('https://facebook.com/sharer/sharer.php?u='+JSON.parse(received).data.link));
+          }else{
+            window.open(encodeURI('https://www.addtoany.com/add_to/line?linkurl='+JSON.parse(received).data.link+'&linkname=meme&linknote=meme'));
+          }
+        }else{
+          alert(JSON.parse(received).data.error);
+        }
+      });
+    }
+    return false;
+  });
 
 	// init at startup
 	window.setTimeout(function(){

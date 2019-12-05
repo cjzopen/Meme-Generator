@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
+  <meta charset="UTF-8" />
   <title>Meme Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css">
   <link rel="stylesheet" href="style.css"/>
@@ -27,12 +30,12 @@
           <img id="start-image" src="img/kokoro.jpg" alt="" />
           <div class="position-absolute p-1 draggable" id="text_top-container" data-x="0" data-y="0">
             <div class="text-center editable" id="text_top">
-              <p>當不認識的親戚小孩來討紅包時</p>
+              <p>親戚小孩來討紅包時</p>
             </div>
           </div>
           <div class="position-absolute p-1 draggable" id="text_bottom-container" data-x="0" data-y="0">
             <div class="text-center editable" id="text_bottom">
-              <p>:)</p>
+              <p>AAAAA</p>
             </div>
           </div>
         </div>
@@ -42,7 +45,7 @@
           <div class="row">
             <label class="control-label col-md-4" for="text_font_size">Font size:</label>
             <div class="col-md-6">
-              <input class="w-100" id="text_font_size" type="range" min="12" max="24" value="18"/>
+              <input class="w-100" id="text_font_size" type="range" min="16" max="24" value="18"/>
             </div>
             <div class="col-md-2 setting-value">
               <span id="text_font_size__val">18</span>px
@@ -55,11 +58,24 @@
             <div class="col-6">
               <input class="w-100" id="text_color" type="color" value="#ffffff" />
             </div>
+            <div class="col-md-2 setting-value">
+              <span id="text_color__val">#ffffff</span>
+            </div>
           </div>
         </div>
         <div class="form-group">
           <div class="row">
             <a href="#" class="btn btn-primary btn-block my-3" id="download_meme">Download</a>
+          </div>
+        </div>
+        <div class="form-group" id="share-area" data-url="">
+          <div class="row">
+            <div class="w-50 pr-3">
+              <a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.ares.com.tw%2Fevents%2Fhcp-workshop-20191115" class="btn btn-primary btn-block mb-3" id="facebook">share to Facebook</a>
+            </div>
+            <div class="w-50 pl-3">
+              <a href="https://www.addtoany.com/add_to/line?linkurl=https%3A%2F%2Fwww.ares.com.tw%2Fevents%2Fhcp-workshop-20191115&linkname=meme&linknote=meme" class="btn btn-primary btn-block mb-3" id="line">share to LINE</a>
+            </div>
           </div>
         </div>
       </div>
@@ -141,7 +157,7 @@
       </div>
     </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" defer></script> -->
   <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" defer></script> -->
   <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js" defer></script>
