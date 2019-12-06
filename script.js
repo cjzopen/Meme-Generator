@@ -226,6 +226,14 @@ $(document).ready(function(){
   // 	$('#canvas_size__val').text( $(this).val() );
   // 	drawMeme();
   // });
+  $(document).on('click','#preview',function(){
+    $('#meme-container').addClass('d-flex');
+    $('html,body').addClass('overflow-hidden');
+  });
+   $(document).on('click','#meme-container',function(){
+    $(this).removeClass('d-flex');
+    $('html,body').removeClass('overflow-hidden');
+   });
 
   $('#download_meme').click(function(e){
 		$(this).attr('href', canvas.toDataURL());
@@ -242,25 +250,51 @@ $(document).ready(function(){
     var $this = $(this);
     var image_data = $('#share-area').attr('data-url');
     var image_data_new = canvas.toDataURL();
+    var imgur_link='';
     if(image_data !== image_data_new){
       $('#share-area').attr('data-url', canvas.toDataURL());
       $.ajax({
         type: "POST",
         url: "imgur.php",
         data: {image:$('#share-area').attr('data-url')},
-        beforeSend: function(){}
+        beforeSend: function(){
+          $('#share-area').hide();
+        }
       }).done(function(received){
         console.log(JSON.parse(received));
         if(JSON.parse(received).success){
+          imgur_link = JSON.parse(received).data.link;
           if($this.attr('id')=='facebook'){
-            window.open(encodeURI('https://facebook.com/sharer/sharer.php?u='+JSON.parse(received).data.link));
+            window.open(encodeURI('https://facebook.com/sharer/sharer.php?u='+imgur_link));
           }else{
-            window.open(encodeURI('https://www.addtoany.com/add_to/line?linkurl='+JSON.parse(received).data.link+'&linkname=meme&linknote=meme'));
+            window.open(encodeURI('https://www.addtoany.com/add_to/line?linkurl='+imgur_link+'&linkname=meme&linknote=meme'));
           }
         }else{
           alert(JSON.parse(received).data.error);
         }
+      }).fail(function(x,e){
+        if (x.status==0) {
+          alert('You are offline!!\n Please Check Your Network.');
+        } else if(x.status==404) {
+          alert('Requested URL not found');
+        } else if(x.status==500) {
+          alert('Internel Server Error');
+        } else if(e=='parsererror') {
+          alert('Parsing JSON Request failed');
+        } else if(e=='timeout'){
+          alert('Request Time out');
+        } else {
+          alert('Unknow Error');
+        }
+      }).always(function(){
+        $('#share-area').show();
       });
+    }else{
+      if($this.attr('id')=='facebook'){
+        window.open(encodeURI('https://facebook.com/sharer/sharer.php?u='+imgur_link));
+      }else{
+        window.open(encodeURI('https://www.addtoany.com/add_to/line?linkurl='+imgur_link+'&linkname=meme&linknote=meme'));
+      }
     }
     return false;
   });

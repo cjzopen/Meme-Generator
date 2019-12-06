@@ -11,19 +11,14 @@
 </head>
   <body>
     <div class="container">
-      <!-- Page Heading Start -->
-      <div class="page-header">
-        <h1 class="mt-4">實際圖片</h1>
-      </div>
-      <br>
-      <!-- Page Heading End -->
 
-      <!-- Left Part of Page Start -->
-      <div>
-        <canvas id="meme" class="img-thumbnail img-fluid">
+      <!-- preview -->
+      <div id="meme-container">
+        <canvas id="meme" class="img-fluid">
           Unfortunately your browser does not support canvas.
         </canvas>
       </div>
+      <!-- tools -->
       <h2 class="mt-5">操作區塊</h2>
       <div class="float-md-left pr-3">
         <div id="meme_area" class="d-inline-block position-relative">
@@ -65,32 +60,27 @@
         </div>
         <div class="form-group">
           <div class="row">
+            <a href="#" class="btn btn-primary btn-block mt-3" id="preview">preview</a>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
             <a href="#" class="btn btn-primary btn-block my-3" id="download_meme">Download</a>
           </div>
         </div>
         <div class="form-group" id="share-area" data-url="">
           <div class="row">
             <div class="w-50 pr-3">
-              <a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.ares.com.tw%2Fevents%2Fhcp-workshop-20191115" class="btn btn-primary btn-block mb-3" id="facebook">share to Facebook</a>
+              <a href="https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.ares.com.tw" class="btn btn-primary btn-block mb-3" id="facebook">share to facebook</a>
             </div>
             <div class="w-50 pl-3">
-              <a href="https://www.addtoany.com/add_to/line?linkurl=https%3A%2F%2Fwww.ares.com.tw%2Fevents%2Fhcp-workshop-20191115&linkname=meme&linknote=meme" class="btn btn-primary btn-block mb-3" id="line">share to LINE</a>
+              <a href="https://www.addtoany.com/add_to/line?linkurl=https%3A%2F%2Fwww.ares.com.tw&linkname=meme&linknote=meme" class="btn btn-primary btn-block mb-3" id="line">share to LINE</a>
             </div>
           </div>
         </div>
       </div>
       <div class="clearfix"></div>
-      <div class="row">
-
-
-
-        <!-- Right Part of Page Start -->
-        <div class="col-md-12">
-
-          <!-- Input for uploading the image : START -->
-          <div class="row">
-            <div class="col-md-12">
-              <h4>images</h4>
+      <h4>images</h4>
               <div class="row" id="image_group">
                 <div class="col-6 col-sm-4 col-md-3 mb-3">
                   <div class="card h-100">
@@ -141,19 +131,14 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-12">
+
               <div class="input-group">
                 <span class="input-group-addon">upload(寬高皆小於800px):</span>
                 <input type="file" accept="images/*" multiple=false class="form-control" id="imgInp" />
               </div>
-            </div>
-          </div>
           <hr>
           <!-- Input for uploading the image : END -->
 
-        </div>
-        <!-- Right Part of page : END -->
       </div>
     </div>
 

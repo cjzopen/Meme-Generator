@@ -27,7 +27,19 @@ html,body{
 	left: -10000px;
 	top: -10000px;
 } */
-
+#meme-container{
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,.8);
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: auto;
+}
 #meme{
   border:1px solid;
 }
@@ -85,4 +97,12 @@ html,body{
 
 label{
   font-weight: bold;
+}
+#facebook{
+  background-color: #1877f2;
+  border-color: #1877f2;
+}
+#line{
+  background-color: #00c300;
+  border-color: #00c300;
 }
