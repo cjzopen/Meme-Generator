@@ -49,11 +49,11 @@ $(document).ready(function(){
       // var memeSize = parseInt( $('#canvas_size').val() );
       var canvas_width=image.width;
       var canvas_height=image.height;
-      if(canvas_width>800 || canvas_height>800){
-        alert('圖片太大');
-        $('#start-image').attr('src', 'img/kokoro.jpg');
-        return;
-      }
+      // if(canvas_width>800 || canvas_height>800){
+      //   alert('圖片太大');
+      //   $('#start-image').attr('src', 'img/kokoro.jpg');
+      //   return;
+      // }
 
       // set form field properties
       // $('#text_top_offset').attr('max', canvas_height);
@@ -73,7 +73,7 @@ $(document).ready(function(){
 
       // settings for writing text
       ctx.lineWidth  = 4;
-      ctx.font = 'bold ' + fontSize + 'px sans-serif';
+      ctx.font = 'bold ' + fontSize + 'px cwTeXMing';
       ctx.strokeStyle = 'black';
       ctx.fillStyle = $('#text_color').val();
       ctx.textAlign = 'center';
@@ -141,35 +141,35 @@ $(document).ready(function(){
 	};
 
   // function to change the image according to the one selected by user
-  $("#imgInp").change(function(){
-    var ext = this.value.match(/\.([^\.]+)$/)[1];
-    switch (ext) {
-      case 'jpg':
-      case 'png':
-      case 'jpeg':
-        break;
-      default:
-        alert('just support jpg and png file');
-        return;
-    }
-		var input = this;
-    var img_cached;
+ //  $("#imgInp").change(function(){
+ //    var ext = this.value.match(/\.([^\.]+)$/)[1];
+ //    switch (ext) {
+ //      case 'jpg':
+ //      case 'png':
+ //      case 'jpeg':
+ //        break;
+ //      default:
+ //        alert('just support jpg and png file');
+ //        return;
+ //    }
+	// 	var input = this;
+ //    var img_cached;
 
-		if (input.files && input.files[0]) {
+	// 	if (input.files && input.files[0]) {
 
-			var reader = new FileReader();
-			reader.onload = function (e) {
-        img_cached = e.target.result;
-				$('#start-image').attr('src', img_cached);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
+	// 		var reader = new FileReader();
+	// 		reader.onload = function (e) {
+ //        img_cached = e.target.result;
+	// 			$('#start-image').attr('src', img_cached);
+	// 		}
+	// 		reader.readAsDataURL(input.files[0]);
+	// 	}
 
-		window.setTimeout(function(){
-      text_reset();
-      drawMeme();
-    }, 500);
-	});
+	// 	window.setTimeout(function(){
+ //      text_reset();
+ //      drawMeme();
+ //    }, 500);
+	// });
   $('#image_group .card').on('click',function(){
     var img_selected = $(this).find('img').attr('src');
     $('#start-image').attr('src', img_selected);

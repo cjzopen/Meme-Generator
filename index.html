@@ -7,10 +7,31 @@
   <meta http-equiv="x-ua-compatible" content="IE=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css">
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexming.css">
+  <link rel="stylesheet" href="style.css">
 </head>
   <body>
     <div class="container">
+      <header class="text-center p-5">
+        <img class="img-fluid" src="img/bg.png" alt="資通新春晚輩圖">
+        <p>眾望所鼠晚輩圖產生器來啦！長輩圖文化攻陷各大社群軟體，<br>快來製作專鼠你的晚輩圖，今年新春就用這個跟（逆）大（襲）家（長）拜（輩）年（圖）！</p>
+        <a href="#example">v</a>
+      </header>
+      <div id="example" class="position-relative">
+        <div class="row">
+          <div class="col-12 col-md-3 my-3"><img src="img/older-1.jpg" alt="" class="img-fluid"></div>
+          <div class="col-12 col-md-3 my-3"><img src="img/older-2.jpg" alt="" class="img-fluid"></div>
+          <div class="col-12 col-md-3 my-3"><img src="img/older-3.jpg" alt="" class="img-fluid"></div>
+          <div class="col-12 col-md-3 my-3"><img src="img/older-4.jpg" alt="" class="img-fluid"></div>
+          <div class="col-12 col-md-3 my-3"><img src="img/older-5.jpg" alt="" class="img-fluid"></div>
+          <div class="col-12 col-md-3 my-3"><img src="img/older-6.jpg" alt="" class="img-fluid"></div>
+          <div class="col-12 col-md-3 my-3"><img src="img/older-7.jpg" alt="" class="img-fluid"></div>
+          <div class="col-12 col-md-3 my-3"><img src="img/older-8.jpg" alt="" class="img-fluid"></div>
+        </div>
+        <div class="position-sticky p-3 w-100 text-center" style="bottom:0;left:0">
+          <a href="#start" class="btn btn-dark">認同請開始</a>
+        </div>
+      </div>
 
       <!-- preview -->
       <div id="meme-container">
@@ -19,10 +40,11 @@
         </canvas>
       </div>
       <!-- tools -->
+      <div id="start"></div>
       <h2 class="mt-5">操作區塊</h2>
       <div class="float-md-left pr-3">
         <div id="meme_area" class="d-inline-block position-relative">
-          <img id="start-image" src="img/kokoro.jpg" alt="" />
+          <img id="start-image" src="img/share-1.jpg" alt="">
           <div class="position-absolute p-1 draggable" id="text_top-container" data-x="0" data-y="0">
             <div class="text-center editable" id="text_top">
               <p>親戚小孩來討紅包時</p>
@@ -60,7 +82,7 @@
         </div>
         <div class="form-group">
           <div class="row">
-            <a href="#" class="btn btn-primary btn-block mt-3" id="preview">preview</a>
+            <span class="btn btn-primary btn-block mt-3" id="preview">preview</span>
           </div>
         </div>
         <div class="form-group">
@@ -86,7 +108,7 @@
                   <div class="card h-100">
                     <div class="row h-100 align-items-center">
                       <div class="col-4">
-                        <img src="img/kokoro.jpg" class="card-img" alt="*">
+                        <img src="img/share-1.jpg" class="card-img" alt="*">
                       </div>
                       <div class="col-8">
                         <p class="card-text">kokoro</p>
@@ -132,10 +154,6 @@
                 </div>
               </div>
 
-              <div class="input-group">
-                <span class="input-group-addon">upload(寬高皆小於800px):</span>
-                <input type="file" accept="images/*" multiple=false class="form-control" id="imgInp" />
-              </div>
           <hr>
           <!-- Input for uploading the image : END -->
 
