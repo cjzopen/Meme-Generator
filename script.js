@@ -118,19 +118,15 @@ $(document).ready(function(){
     var line = '';
     var lines = [];
 
-    for (var n = 0; n < words.length; n++)
-    {
-  			var testLine = line + ' ' + words[n];
-  			var testWidth = ctx.measureText(testLine).width;
-  			if (testWidth > maxWidth)
-        {
-  				lines.push(line);
-  				line = words[n] + ' ';
-  			}
-        else
-        {
-  				line = testLine;
-  			}
+    for (var n = 0; n < words.length; n++){
+  		var testLine = line + ' ' + words[n];
+  		var testWidth = ctx.measureText(testLine).width;
+  		if (testWidth > maxWidth)        {
+  			lines.push(line);
+  			line = words[n] + ' ';
+  		}else{
+  			line = testLine;
+  		}
 		}
 
     // pushing the last line
