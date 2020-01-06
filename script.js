@@ -28,17 +28,21 @@ $(document).ready(function(){
       textarea.style.height=adjustedHeight+'px';
     }
   }
-  function text_reset(){
-    var $top=$('#text_top-container');
-    var $bottom=$('#text_bottom-container')
-    $top.css('transform', 'translate(0, 0)');
-    $top.attr('data-x',0);
-    $top.attr('data-y',0);
-    $bottom.css('transform', 'translate(0, 0)');
-    $bottom.attr('data-x',0);
-    $bottom.attr('data-y',0);
-    $('#text_top').html('<p>親戚小孩來討紅包時</p>');
-    $('#text_bottom').html('<p>AAAAA</p>');
+  // function text_reset(){
+  //   var $top=$('#text_top-container');
+  //   var $bottom=$('#text_bottom-container')
+  //   $top.css('transform', 'translate(0, 0)');
+  //   $top.attr('data-x',0);
+  //   $top.attr('data-y',0);
+  //   $bottom.css('transform', 'translate(0, 0)');
+  //   $bottom.attr('data-x',0);
+  //   $bottom.attr('data-y',0);
+  //   $('#text_top').html('<p>親戚小孩來討紅包時</p>');
+  //   $('#text_bottom').html('<p>AAAAA</p>');
+  // }
+  function text_example(t,b){
+    $('#text_top').html('<p>'+t+'</p>');
+    $('#text_bottom').html('<p>'+b+'</p>');
   }
 
   // Main drawing function
@@ -170,22 +174,40 @@ $(document).ready(function(){
  //      drawMeme();
  //    }, 500);
 	// });
-  $('#image_group .card').on('click',function(){
-    var img_selected = $(this).find('img').attr('src');
+  $('#image_group img').on('click',function(){
+    var img_selected = $(this).attr('src');
     $('#start-image').attr('src', img_selected);
 
-    text_reset();
+    // text_reset();
     drawMeme();
   })
 
   // register event listeners
   $(document).on('change keydown keyup', '#text_top', function() {
-    autogrow(this);
+    // autogrow(this);
   	drawMeme();
   });
   $(document).on('change keydown keyup', '#text_bottom', function() {
-    autogrow(this);
+    // autogrow(this);
   	drawMeme();
+  });
+  $(document).on('change', '#example-text', function() {
+    var text_case=$(this).val();
+    console.log(text_case);
+    switch (text_case) {
+    case '1':
+      text_example('新年快樂','但之後的每一天不一定快樂');
+    　break;
+    case '2':
+      text_example('早安！初一耍廢，初二耍廢','未來的每一天都要繼續耍廢');
+    　break;
+    case '3':
+      text_example('單身狗請右轉','祝您今年還是無法心有所鼠');
+    　break;
+    default:
+      text_example('failed','failed');
+    }
+    drawMeme();
   });
   // $(document).on('input change', '#text_top_offset', function() {
   // 	$('#text_top_offset__val').text( $(this).val() );
@@ -203,12 +225,20 @@ $(document).ready(function(){
     });
   	drawMeme();
   });
-  $(document).on('change keydown keyup', '#text_color', function() {
-    $('.editable,#text_color__val').css({
-      'color':$(this).val()
-    });
-    $('#text_color__val').text($(this).val());
+  // $(document).on('change keydown keyup', '#text_color', function() {
+  //   $('.editable,#text_color__val').css({
+  //     'color':$(this).val()
+  //   });
+  //   $('#text_color__val').text($(this).val());
+  //   drawMeme();
+  // });
+  $(document).on('click', '.color-block', function(e) {
+    e.preventDefault();
+    var $this_color = $(this).attr('data-color');
+    $('#text_color').val($this_color);
+    $('.editable').css('color',$this_color);
     drawMeme();
+    return false;
   });
   // $(document).on('input change', '#text_line_height', function() {
   // 	$('#text_line_height__val').text( $(this).val() );
@@ -357,4 +387,15 @@ $(document).ready(function(){
     toolbar: false,
     placeholder: false
   });
+
+  var area_width = $('#meme_area').parent('div').width();
+  if($('#meme_area').width() > area_width){
+    $('#meme_area').css('transform','scale('+area_width/$('#meme_area').width()+')')
+  }
+  $(window).resize(function(){
+    area_width = $('#meme_area').parent('div').width();
+    if($('#meme_area').width() > area_width){
+      $('#meme_area').css('transform','scale('+area_width/$('#meme_area').width()+')')
+    }
+  })
 });

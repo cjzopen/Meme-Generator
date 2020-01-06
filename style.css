@@ -24,6 +24,9 @@ html,body{
   width: 100%!important;
   max-width: 1440px!important;
 }
+.btn{
+  border-radius: 4rem;
+}
 
 /* img#start-image {
 	position: absolute;
@@ -66,6 +69,14 @@ html,body{
   bottom: 0;
   left: 0;
 }
+.color-block{
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: .25rem;
+}
+.color-block:focus{
+  border: 1px solid white;
+}
 #text_color__val,.editable{
   font-weight: bold;
   color: #fff;
@@ -86,8 +97,13 @@ html,body{
   white-space: nowrap;
 }
 
-
-#image_group .card{
+#image_group{
+  max-width: 500px;
+  display: grid;
+  grid-template-columns:repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+#image_group img{
   cursor: pointer;
 }
 /* .card{
@@ -108,4 +124,8 @@ label{
 #line{
   background-color: #00c300;
   border-color: #00c300;
+}
+
+#meme_area{
+  transform-origin: left center;
 }
